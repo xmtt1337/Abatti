@@ -197,56 +197,58 @@
 </div>
 
 <script>
-    feather.replace(); // inicializa os ícones
+    feather.replace();
 
     const toggle = document.querySelector(".toggle-senha");
-    const password = document.getElementById("senha");
+    const passwordInput = document.getElementById("senha");
 
     toggle.addEventListener("click", () => {
-        if (password.type === "password") {
-            password.type = "text";
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
             toggle.setAttribute("data-feather", "eye-off");
         } else {
-            password.type = "password";
+            passwordInput.type = "password";
             toggle.setAttribute("data-feather", "eye");
         }
         feather.replace();
     });
 
- async function login() {
-    const usuario = document.getElementById("usuario").value;
-    const passwordVal = document.getElementById("senha").value;
+    async function login() {
+        const username = document.getElementById("usuario").value;
+        const password = document.getElementById("senha").value;
 
-    if (!usuario || !passwordVal) {
-        alert("Preencha usuário e senha");
-        return;
-    }
-
-    try {
-        const response = await fetch("https://sistema-backend-i4uh.onrender.com/login", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    email: usuario,
-    senha: password
-  })
-});
-
-        const data = await response.json();
-
-        if (response.ok) {
-            window.location.href = "index.html";
-        } else {
-            alert("Usuário ou senha inválidos");
+        if (!username || !password) {
+            alert("Preencha usuário e senha");
+            return;
         }
 
-    } catch (error) {
-        alert("Erro ao conectar com o servidor");
-        console.error(error);
+        try {
+            const response = await fetch("https://sistema-backend-i4uh.onrender.com/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                localStorage.setItem("user", data.username);
+                window.location.href = "index.html";
+            } else {
+                document.getElementById("erroMsg").style.display = "block";
+                document.getElementById("erroMsg").innerText = "Usuário ou senha inválidos";
+            }
+
+        } catch (error) {
+            alert("Erro ao conectar com o servidor");
+            console.error(error);
+        }
     }
-}
 
     function redefinirSenha() {
         alert("Entre em contato com o administrador do sistema.");
