@@ -70,7 +70,16 @@ body {
     background: rgba(58,134,255,0.1);
     color: #ffffff;
 }
+.menu-item.active {
+    background: rgba(58,134,255,0.18);
+    color: #ffffff;
+}
 
+/* SUBMENU ATIVO */
+.submenu a.active {
+    background: rgba(58,134,255,0.25);
+    color: #ffffff;
+}
 .submenu {
     display: none;
     background: rgba(58,134,255,0.05);
@@ -342,20 +351,19 @@ body {
   });
 
  function toggleMenu(element) {
-    const allSubmenus = document.querySelectorAll(".submenu");
     const allMenuItems = document.querySelectorAll(".menu-item");
+    const allSubmenus = document.querySelectorAll(".submenu");
 
     const submenu = element.nextElementSibling;
     const isOpen = submenu.style.display === "block";
 
-    // Fecha todos
+    // Remove active de todos
+    allMenuItems.forEach(item => item.classList.remove("active", "open"));
     allSubmenus.forEach(menu => menu.style.display = "none");
-    allMenuItems.forEach(item => item.classList.remove("open"));
 
-    // Se não estava aberto, abre
     if (!isOpen) {
         submenu.style.display = "block";
-        element.classList.add("open");
+        element.classList.add("open", "active");
     }
 }
 
