@@ -294,7 +294,7 @@ body {
         <img src="img/logosf.png" alt="Coração do Contestado" class="logo-central">
         <div class="card">
             <h2>Bem-vindo, <span id="welcome-name">...</span>!</h2>
-            <p>Selecione uma opção no menu lateral para começar a gerenciar seu sistema.</p>
+            <p>Selecione uma opção no menu lateral.</p>
         </div>
     </div>
 </div>
@@ -320,13 +320,14 @@ body {
     }
     return res.json();
   })
+
   .then(data => {
     console.log("Usuário autenticado:", data);
 
     const usernameCompleto = data.usuario.username;
 
     // Remove os últimos 3 caracteres
-    const usernameFormatado = usernameCompleto.slice(0, -3);
+    const usernameFormatado = usernameCompleto.slice(0, -4);
 
     document.querySelector(".username").innerText = usernameFormatado;
     document.getElementById("welcome-name").innerText = usernameFormatado;
