@@ -293,7 +293,7 @@ body {
     <div class="main">
         <img src="img/logo.png" alt="Coração do Contestado" class="logo-central">
         <div class="card">
-            <h2>Bem-vindo!</h2>
+            <h2>Bem-vindo, <span id="welcome-name">...</span>!</h2>
             <p>Selecione uma opção no menu lateral para começar a gerenciar seu sistema.</p>
         </div>
     </div>
@@ -321,8 +321,9 @@ body {
     return res.json();
   })
   .then(data => {
+    
     console.log("Usuário autenticado:", data);
-
+    document.getElementById("welcome-name").innerText = data.usuario.username;
     // Atualiza nome do usuário na topbar
     document.querySelector(".username").innerText = data.usuario.username;
   })
