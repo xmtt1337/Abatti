@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Abatti - Bipagem e Controle</title>
+<title>Massas - Coração do Contestado</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="img/logosf.png" type="image/png">
 
@@ -25,7 +25,7 @@ body {
 
 /* ===== SIDEBAR ===== */
 .sidebar {
-    width: 250px;
+    width: 150px;
     background: #0f0f14;
     color: #fff;
     display: flex;
@@ -35,13 +35,13 @@ body {
 }
 
 .logo {
-    display: flex;
-    justify-content: center; /* centraliza horizontalmente */
-    align-items: flex-start; /* alinha no topo */
-    padding: 30 px 0;         /* espaço em cima e embaixo da logo */
+    padding: 25px 20px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
     border-bottom: 1px solid rgba(255,255,255,0.05);
     background: rgba(58,134,255,0.05);
-    flex-shrink: 0;          /* impede que encolha */
 }
 
 .menu {
@@ -208,7 +208,7 @@ body {
     color: #ffffff;
 }
 .logo-img {
-    width: 90px;     /* ou ajuste como quiser */
+    width: 75px;       /* controla tamanho */
     height: auto;
     object-fit: contain;
     transition: 0.3s ease;
@@ -251,35 +251,39 @@ body {
 <body>
 
 <!-- SIDEBAR -->
-<!-- SIDEBAR -->
-<nav class="sidebar">
+<div class="sidebar">
 
     <div class="logo">
         <img src="img/logobranca.png" alt="Logo GC" class="logo-img">
     </div>
 
-    <ul class="menu">
+    <div class="menu">
 
-        <li class="menu-item" onclick="toggleMenu(this)">
-            <span>Operação</span>
-            <span class="arrow">▾</span>
-        </li>
-        <ul class="submenu">
-            <li><a href="#">Receber</a></li>
-            <li><a href="#">Atribuir</a></li>
-        </ul>
+        <!-- OPERACAO -->
+        <div class="menu-item" onclick="toggleMenu(this)">
+            Operação
+            <span>▾</span>
+        </div>
 
-        <li class="menu-item" onclick="toggleMenu(this)">
-            <span>Pedidos</span>
-            <span class="arrow">▾</span>
-        </li>
-        <ul class="submenu">
-            <li><a href="#">Pesquisar</a></li>
-        </ul>
+        <div class="submenu">
+            <a href="#">Receber</a>
+            <a href="#">Atribuir</a>
+        </div>
 
-    </ul>
+        <!-- PEDIDOS -->
+        <div class="menu-item" onclick="toggleMenu(this)">
+            Pedidos
+            <span>▾</span>
+        </div>
 
-</nav>
+        <div class="submenu">
+            <a href="#">Pesquisar</a>
+        </div>
+
+    </div>
+
+</div>
+
 <!-- CONTENT -->
 <div class="content">
     <div class="topbar">
