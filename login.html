@@ -200,14 +200,14 @@
     feather.replace(); // inicializa os ícones
 
     const toggle = document.querySelector(".toggle-senha");
-    const senha = document.getElementById("senha");
+    const password = document.getElementById("senha");
 
     toggle.addEventListener("click", () => {
-        if (senha.type === "password") {
-            senha.type = "text";
+        if (password.type === "password") {
+            password.type = "text";
             toggle.setAttribute("data-feather", "eye-off");
         } else {
-            senha.type = "password";
+            password.type = "password";
             toggle.setAttribute("data-feather", "eye");
         }
         feather.replace();
@@ -215,9 +215,9 @@
 
  async function login() {
     const usuario = document.getElementById("usuario").value;
-    const senhaVal = document.getElementById("senha").value;
+    const passwordVal = document.getElementById("senha").value;
 
-    if (!usuario || !senhaVal) {
+    if (!usuario || !passwordVal) {
         alert("Preencha usuário e senha");
         return;
     }
@@ -230,7 +230,7 @@
   },
   body: JSON.stringify({
     email: usuario,
-    senha: senha
+    senha: password
   })
 });
 
