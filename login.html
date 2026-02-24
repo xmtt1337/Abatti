@@ -26,7 +26,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #eaf6ff, #cfe9ff);
+    background: linear-gradient(135deg, #0f0f14, #0d1b2a);
     position: relative;
     overflow: hidden;
 }
@@ -34,41 +34,39 @@ body {
 body::before {
     content: "";
     position: absolute;
+    width: 1600px;
+    height: 1600px;
+    background: radial-gradient(circle, rgba(58,134,255,0.15) 0%, transparent 60%);
     top: 50%;
     left: 50%;
-    width: 1500px;
-    height: 1500px;
-    background: url('img/logo.png') no-repeat center/contain;
-    opacity: 0.04;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 0;
 }
 
 .login-card {
-    position: relative;
-    background: #ffffff;
+    background: rgba(27, 38, 59, 0.9);
     padding: 50px 40px;
-    border-radius: 20px;
+    border-radius: 18px;
     width: 100%;
     max-width: 400px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
     text-align: center;
-    z-index: 1;
+    border: 1px solid rgba(58,134,255,0.2);
+    backdrop-filter: blur(20px);
     animation: fadeIn 0.8s ease forwards;
-    border: 1px solid #d9e6f2;
 }
 
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(-20px);}
-    100% { opacity: 1; transform: translateY(0);}
+    from { opacity: 0; transform: translateY(-20px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 
 .login-card h1 {
     margin-bottom: 30px;
-    font-size: 28px;
-    color: #111111;
+    font-size: 26px;
+    color: #f1f5f9;
     font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .login-card input {
@@ -76,16 +74,16 @@ body::before {
     padding: 14px 16px;
     margin-bottom: 20px;
     border-radius: 10px;
-    border: 1px solid #d9e6f2;
+    border: 1px solid rgba(255,255,255,0.08);
     font-size: 15px;
+    background: #0f0f14;
+    color: #f1f5f9;
     transition: all 0.3s ease;
-    background: #f7fbff;
-    color: #111111;
 }
 
 .login-card input:focus {
-    border-color: #4da6ff;
-    box-shadow: 0 0 8px rgba(77,166,255,0.4);
+    border-color: #3a86ff;
+    box-shadow: 0 0 10px rgba(58,134,255,0.5);
     outline: none;
 }
 
@@ -103,12 +101,12 @@ body::before {
     top: 37%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #111111;
+    color: #f1f5f9;
     transition: 0.3s;
 }
 
 .toggle-senha:hover {
-    color: #4da6ff;
+    color: #3a86ff;
 }
 
 .login-card button {
@@ -116,7 +114,7 @@ body::before {
     padding: 14px;
     border: none;
     border-radius: 10px;
-    background: #4da6ff;
+    background: linear-gradient(90deg, #3a86ff, #2667ff);
     color: #ffffff;
     font-size: 16px;
     cursor: pointer;
@@ -126,8 +124,8 @@ body::before {
 }
 
 .login-card button:hover {
-    background: #3399ff;
-    box-shadow: 0 10px 25px rgba(77,166,255,0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(58,134,255,0.4);
 }
 
 .forgot {
@@ -136,21 +134,16 @@ body::before {
 }
 
 .forgot a {
-    color: #111111;
+    color: #3a86ff;
     text-decoration: none;
     transition: 0.2s;
 }
 
 .forgot a:hover {
-    color: #4da6ff;
     text-decoration: underline;
 }
 
 @media (max-width: 500px) {
-    body::before {
-        width: 300px;
-        height: 300px;
-    }
     .login-card {
         padding: 40px 30px;
     }
