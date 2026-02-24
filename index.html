@@ -220,11 +220,41 @@
 </div>
 
 <script>
-    function toggleMenu() {
+  const token = localStorage.getItem("token");
+
+  // 🔐 Se não tiver token, volta para login
+  if (!token) {
+    window.location.href = "login.html";
+  }
+
+  // 🔎 Valida token no backend
+  fetch("https://sistema-backend-i4uh.onrender.com/perfil", {
+    method: "GET",
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw new Error("Token inválido");
+    }
+    return res.json();
+  })
+  .then(data => {
+    console.log("Usuário autenticado:", data);
+
+    // Atualiza nome do usuário na topbar
+    document.querySelector(".user").innerText = data.usuario.username;
+  })
+  .catch(() => {
+    localStorage.removeItem("token");
+    window.location.href = "login.html";
+  });
+
+  function toggleMenu() {
     const menuItem = document.querySelector(".menu-item");
     const submenu = document.getElementById("submenu-produtos");
 
-    // alterna a exibição do submenu
     if (submenu.style.display === "block") {
         submenu.style.display = "none";
         menuItem.classList.remove("open");
@@ -232,8 +262,13 @@
         submenu.style.display = "block";
         menuItem.classList.add("open");
     }
-}
+  }
 
+  // 🚪 Função de logout
+  function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "login.html";
+  }
 </script>
 
 </body>
