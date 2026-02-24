@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Massas - Coração do Contestado</title>
+<title>Abatti - Bipagem e Controle</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="img/logosf.png" type="image/png">
 
@@ -25,7 +25,7 @@ body {
 
 /* ===== SIDEBAR ===== */
 .sidebar {
-    width: 150px;
+    width: 250px;
     background: #0f0f14;
     color: #fff;
     display: flex;
@@ -35,13 +35,10 @@ body {
 }
 
 .logo {
-    padding: 25px 20px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 1px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    background: rgba(58,134,255,0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
 }
 
 .menu {
@@ -208,14 +205,14 @@ body {
     color: #ffffff;
 }
 .logo-img {
-    width: 75px;       /* controla tamanho */
-    height: auto;
-    object-fit: contain;
+    width: 90px;
+    opacity: 0.9;
     transition: 0.3s ease;
 }
 
 .logo-img:hover {
-    transform: scale(1.05);
+    opacity: 1;
+    transform: scale(1.03);
 }
 /* TOOLTIP */
 .tooltip {
@@ -251,39 +248,35 @@ body {
 <body>
 
 <!-- SIDEBAR -->
-<div class="sidebar">
+<!-- SIDEBAR -->
+<nav class="sidebar">
 
     <div class="logo">
         <img src="img/logobranca.png" alt="Logo GC" class="logo-img">
     </div>
 
-    <div class="menu">
+    <ul class="menu">
 
-        <!-- OPERACAO -->
-        <div class="menu-item" onclick="toggleMenu(this)">
-            Operação
-            <span>▾</span>
-        </div>
+        <li class="menu-item" onclick="toggleMenu(this)">
+            <span>Operação</span>
+            <span class="arrow">▾</span>
+        </li>
+        <ul class="submenu">
+            <li><a href="#">Receber</a></li>
+            <li><a href="#">Atribuir</a></li>
+        </ul>
 
-        <div class="submenu">
-            <a href="#">Receber</a>
-            <a href="#">Atribuir</a>
-        </div>
+        <li class="menu-item" onclick="toggleMenu(this)">
+            <span>Pedidos</span>
+            <span class="arrow">▾</span>
+        </li>
+        <ul class="submenu">
+            <li><a href="#">Pesquisar</a></li>
+        </ul>
 
-        <!-- PEDIDOS -->
-        <div class="menu-item" onclick="toggleMenu(this)">
-            Pedidos
-            <span>▾</span>
-        </div>
+    </ul>
 
-        <div class="submenu">
-            <a href="#">Pesquisar</a>
-        </div>
-
-    </div>
-
-</div>
-
+</nav>
 <!-- CONTENT -->
 <div class="content">
     <div class="topbar">
