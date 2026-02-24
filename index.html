@@ -207,7 +207,16 @@ body {
     box-shadow: 0 0 15px rgba(58,134,255,0.6);
     color: #ffffff;
 }
+.logo-img {
+    width: 140px;       /* controla tamanho */
+    height: auto;
+    object-fit: contain;
+    transition: 0.3s ease;
+}
 
+.logo-img:hover {
+    transform: scale(1.05);
+}
 /* TOOLTIP */
 .tooltip {
     position: absolute;
@@ -242,10 +251,9 @@ body {
 <body>
 
 <!-- SIDEBAR -->
-<div class="sidebar">
-    <div class="logo">
-        GC
-    </div>
+<div class="logo">
+    <img src="img/logobranca.png" alt="Logo GC" class="logo-img">
+</div>
 
     <div class="menu">
 
