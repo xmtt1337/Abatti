@@ -35,13 +35,13 @@ body {
 }
 
 .logo {
-    padding: 25px 20px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 1px;
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+    align-items: flex-start; /* alinha no topo */
+    padding: 20px 0;         /* espaço em cima e embaixo da logo */
     border-bottom: 1px solid rgba(255,255,255,0.05);
     background: rgba(58,134,255,0.05);
+    flex-shrink: 0;          /* impede que encolha */
 }
 
 .menu {
@@ -208,7 +208,7 @@ body {
     color: #ffffff;
 }
 .logo-img {
-    width: 75px;       /* controla tamanho */
+    width: 250px;     /* ou ajuste como quiser */
     height: auto;
     object-fit: contain;
     transition: 0.3s ease;
