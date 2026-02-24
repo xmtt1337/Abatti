@@ -38,7 +38,7 @@ body {
     display: flex;
     justify-content: center; /* centraliza horizontalmente */
     align-items: flex-start; /* alinha no topo */
-    padding: px 60;         /* espaço em cima e embaixo da logo */
+    padding: 30 px 0;         /* espaço em cima e embaixo da logo */
     border-bottom: 1px solid rgba(255,255,255,0.05);
     background: rgba(58,134,255,0.05);
     flex-shrink: 0;          /* impede que encolha */
@@ -251,39 +251,35 @@ body {
 <body>
 
 <!-- SIDEBAR -->
-<div class="sidebar">
+<!-- SIDEBAR -->
+<nav class="sidebar">
 
     <div class="logo">
         <img src="img/logobranca.png" alt="Logo GC" class="logo-img">
     </div>
 
-    <div class="menu">
+    <ul class="menu">
 
-        <!-- OPERACAO -->
-        <div class="menu-item" onclick="toggleMenu(this)">
-            Operação
-            <span>▾</span>
-        </div>
+        <li class="menu-item" onclick="toggleMenu(this)">
+            <span>Operação</span>
+            <span class="arrow">▾</span>
+        </li>
+        <ul class="submenu">
+            <li><a href="#">Receber</a></li>
+            <li><a href="#">Atribuir</a></li>
+        </ul>
 
-        <div class="submenu">
-            <a href="#">Receber</a>
-            <a href="#">Atribuir</a>
-        </div>
+        <li class="menu-item" onclick="toggleMenu(this)">
+            <span>Pedidos</span>
+            <span class="arrow">▾</span>
+        </li>
+        <ul class="submenu">
+            <li><a href="#">Pesquisar</a></li>
+        </ul>
 
-        <!-- PEDIDOS -->
-        <div class="menu-item" onclick="toggleMenu(this)">
-            Pedidos
-            <span>▾</span>
-        </div>
+    </ul>
 
-        <div class="submenu">
-            <a href="#">Pesquisar</a>
-        </div>
-
-    </div>
-
-</div>
-
+</nav>
 <!-- CONTENT -->
 <div class="content">
     <div class="topbar">
