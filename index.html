@@ -342,12 +342,18 @@ body {
   });
 
  function toggleMenu(element) {
-    const submenu = element.nextElementSibling;
+    const allSubmenus = document.querySelectorAll(".submenu");
+    const allMenuItems = document.querySelectorAll(".menu-item");
 
-    if (submenu.style.display === "block") {
-        submenu.style.display = "none";
-        element.classList.remove("open");
-    } else {
+    const submenu = element.nextElementSibling;
+    const isOpen = submenu.style.display === "block";
+
+    // Fecha todos
+    allSubmenus.forEach(menu => menu.style.display = "none");
+    allMenuItems.forEach(item => item.classList.remove("open"));
+
+    // Se não estava aberto, abre
+    if (!isOpen) {
         submenu.style.display = "block";
         element.classList.add("open");
     }
