@@ -331,18 +331,17 @@ body {
     window.location.href = "login.html";
   });
 
-  function toggleMenu() {
-    const menuItem = document.querySelector(".menu-item");
-    const submenu = document.getElementById("submenu-produtos");
+ function toggleMenu(element) {
+    const submenu = element.nextElementSibling;
 
     if (submenu.style.display === "block") {
         submenu.style.display = "none";
-        menuItem.classList.remove("open");
+        element.classList.remove("open");
     } else {
         submenu.style.display = "block";
-        menuItem.classList.add("open");
+        element.classList.add("open");
     }
-  }
+}
 
   // 🚪 Função de logout
   function logout() {
