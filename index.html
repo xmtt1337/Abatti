@@ -372,6 +372,24 @@ body {
     localStorage.removeItem("token");
     window.location.href = "login.html";
   }
+
+  const submenuLinks = document.querySelectorAll(".submenu a");
+
+submenuLinks.forEach(link => {
+    link.addEventListener("click", function() {
+
+        // Remove active de todos os links
+        submenuLinks.forEach(l => l.classList.remove("active"));
+
+        // Marca o clicado
+        this.classList.add("active");
+
+        // Também ativa o menu pai
+        const parentMenu = this.closest(".submenu").previousElementSibling;
+        parentMenu.classList.add("active");
+    });
+});
+
 </script>
 
 </body>
