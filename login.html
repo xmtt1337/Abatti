@@ -101,7 +101,7 @@ body::before {
     top: 37%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #f1f5f9;
+    color: rgba(241, 245, 249, 0.5); /* mais apagado */
     transition: 0.3s;
 }
 
@@ -133,12 +133,58 @@ body::before {
     font-size: 14px;
 }
 
+.erro-msg {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    background: rgba(255, 59, 59, 0.1);
+    color: #ff4d4d;
+    border: 1px solid rgba(255, 59, 59, 0.3);
+    padding: 0 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 0;
+    text-align: left;
+    transition: all 0.4s ease;
+}
+
+.erro-msg.show {
+    opacity: 1;
+    max-height: 100px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+
 .forgot a {
     color: #3a86ff;
     text-decoration: none;
     transition: 0.2s;
 }
 
+.logo-login {
+    width: 180px;   /* ajusta o tamanho */
+    margin-bottom: 5px;
+}
+.button-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
 .forgot a:hover {
     text-decoration: underline;
 }
@@ -154,7 +200,9 @@ body::before {
 
 <div class="login-card">
     <form autocomplete="off" onsubmit="login(); return false;">
-        <h1>Abatti</h1>
+       <img src="img/logobranca.png" alt="Abatti" class="logo-login">
+
+        <div id="erroMsg" class="erro-msg"></div>
 
         <!-- Inputs falsos para evitar autocomplete -->
         <input type="text" style="display:none">
@@ -171,7 +219,6 @@ body::before {
         <button type="submit">Entrar</button>
 
         <!-- Mensagem de erro -->
-        <div id="erroMsg" style="display:none; color:#ff3b3b; font-size:14px; font-weight:500; font-family:'Poppins', sans-serif; margin-top:10px;"></div>
         
         <div class="forgot">
             <a href="#" onclick="redefinirSenha()">Redefinir senha</a>
@@ -183,27 +230,44 @@ body::before {
     feather.replace();
 
     const toggle = document.querySelector(".toggle-senha");
-    const passwordInput = document.getElementById("senha");
+const passwordInput = document.getElementById("senha");
 
-    toggle.addEventListener("click", () => {
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            toggle.setAttribute("data-feather", "eye-off");
-        } else {
-            passwordInput.type = "password";
-            toggle.setAttribute("data-feather", "eye");
-        }
-        feather.replace();
-    });
+toggle.addEventListener("click", () => {
+    const isPassword = passwordInput.type === "password";
 
-    async function login() {
+    passwordInput.type = isPassword ? "text" : "password";
+
+    toggle.innerHTML = isPassword 
+        ? feather.icons["eye-off"].toSvg()
+        : feather.icons["eye"].toSvg();
+});
+let erroTimeout;
+
+function mostrarErro(mensagem) {
+    const erroMsg = document.getElementById("erroMsg");
+
+    clearTimeout(erroTimeout);
+
+    erroMsg.innerText = mensagem;
+    erroMsg.classList.add("show");
+
+    erroTimeout = setTimeout(() => {
+        erroMsg.classList.remove("show");
+    }, 2700);
+}
+   async function login() {
     const username = document.getElementById("usuario").value;
     const password = document.getElementById("senha").value;
+    const botao = document.querySelector("button");
 
     if (!username || !password) {
-        alert("Preencha usuário e senha");
+        mostrarErro("Preencha usuário e senha.");
         return;
     }
+
+    botao.disabled = true;
+    botao.classList.add("button-loading");
+    botao.innerHTML = `<div class="spinner"></div> Entrando...`;
 
     try {
         const response = await fetch("https://sistema-backend-i4uh.onrender.com/login", {
@@ -211,25 +275,27 @@ body::before {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
+            body: JSON.stringify({ username, password })
         });
 
         const data = await response.json();
 
         if (data.success) {
-            localStorage.setItem("token", data.token); // 👈 AQUI
+            localStorage.setItem("token", data.token);
             window.location.href = "index.html";
+            return;
         } else {
-            alert("Usuário ou senha inválidos");
+            mostrarErro("Usuário ou senha inválidos.");
         }
 
     } catch (error) {
-        alert("Erro ao conectar com o servidor");
+        mostrarErro("Erro ao conectar com o servidor.");
         console.error(error);
     }
+
+    botao.disabled = false;
+    botao.classList.remove("button-loading");
+    botao.innerHTML = "Entrar";
 }
 
     function redefinirSenha() {
